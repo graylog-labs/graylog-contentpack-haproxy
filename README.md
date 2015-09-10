@@ -1,4 +1,4 @@
-# Graylog content pack for HAProxy
+## Graylog content pack for HAProxy
 
 This content pack will launch an UDP input on port 11002 that is able to parse the standard HAProxy HTTP logs. Example log message:
 
