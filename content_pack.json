@@ -1,0 +1,275 @@
+{
+  "id" : null,
+  "name" : "HAProxy HTTP logs",
+  "description" : "This content pack will launch an UDP input on port 11002 that is able to parse the standard HAProxy HTTP logs. ",
+  "category" : "HTTP servers",
+  "inputs" : [ {
+    "title" : "HAProxy HTTP logs",
+    "configuration" : {
+      "override_source" : "",
+      "recv_buffer_size" : 262144,
+      "bind_address" : "0.0.0.0",
+      "port" : 11002
+    },
+    "type" : "org.graylog2.inputs.raw.udp.RawUDPInput",
+    "global" : false,
+    "extractors" : [ {
+      "title" : "Remote Address",
+      "type" : "REGEX",
+      "configuration" : {
+        "regex_value" : "haproxy:\\s+(\\S+):"
+      },
+      "converters" : [ ],
+      "order" : 1,
+      "cursor_strategy" : "COPY",
+      "target_field" : "remote_addr",
+      "source_field" : "message",
+      "condition_type" : "REGEX",
+      "condition_value" : "^haproxy:"
+    }, {
+      "title" : "Request Timestamp",
+      "type" : "REGEX",
+      "configuration" : {
+        "regex_value" : "haproxy:.+?\\[(.+?)\\]"
+      },
+      "converters" : [ {
+        "type" : "DATE",
+        "configuration" : {
+          "date_format" : "dd/MMM/YYYY:HH:mm:ss.SSS"
+        }
+      } ],
+      "order" : 3,
+      "cursor_strategy" : "COPY",
+      "target_field" : "timestamp",
+      "source_field" : "message",
+      "condition_type" : "REGEX",
+      "condition_value" : "^haproxy:"
+    }, {
+      "title" : "Frontend",
+      "type" : "REGEX",
+      "configuration" : {
+        "regex_value" : "haproxy:.+?\\[.+?\\]\\s(\\S+)"
+      },
+      "converters" : [ ],
+      "order" : 4,
+      "cursor_strategy" : "COPY",
+      "target_field" : "frontend",
+      "source_field" : "message",
+      "condition_type" : "REGEX",
+      "condition_value" : "^haproxy:"
+    }, {
+      "title" : "Server",
+      "type" : "REGEX",
+      "configuration" : {
+        "regex_value" : "haproxy:.+?\\[.+?\\].+?/(\\S+)"
+      },
+      "converters" : [ ],
+      "order" : 6,
+      "cursor_strategy" : "COPY",
+      "target_field" : "server",
+      "source_field" : "message",
+      "condition_type" : "REGEX",
+      "condition_value" : "^haproxy:"
+    }, {
+      "title" : "Backend",
+      "type" : "REGEX",
+      "configuration" : {
+        "regex_value" : "haproxy:.+?\\[.+?\\].+?(\\S+)/"
+      },
+      "converters" : [ ],
+      "order" : 5,
+      "cursor_strategy" : "COPY",
+      "target_field" : "backend",
+      "source_field" : "message",
+      "condition_type" : "REGEX",
+      "condition_value" : "^haproxy:"
+    }, {
+      "title" : "Response Status",
+      "type" : "REGEX",
+      "configuration" : {
+        "regex_value" : "haproxy:.+?\\[.+?\\].+?\\s\\S+\\s\\S+\\s(\\d+)"
+      },
+      "converters" : [ {
+        "type" : "NUMERIC",
+        "configuration" : { }
+      } ],
+      "order" : 7,
+      "cursor_strategy" : "COPY",
+      "target_field" : "response_status",
+      "source_field" : "message",
+      "condition_type" : "REGEX",
+      "condition_value" : "^haproxy:"
+    }, {
+      "title" : "Response Bytes",
+      "type" : "REGEX",
+      "configuration" : {
+        "regex_value" : "haproxy:.+?\\[.+?\\].+?\\s\\S+\\s\\S+\\s\\d+\\s(\\d+)"
+      },
+      "converters" : [ {
+        "type" : "NUMERIC",
+        "configuration" : { }
+      } ],
+      "order" : 8,
+      "cursor_strategy" : "COPY",
+      "target_field" : "response_bytes",
+      "source_field" : "message",
+      "condition_type" : "REGEX",
+      "condition_value" : "^haproxy:"
+    }, {
+      "title" : "Request Verb",
+      "type" : "REGEX",
+      "configuration" : {
+        "regex_value" : "haproxy:.+?\"(\\w+)\\s"
+      },
+      "converters" : [ ],
+      "order" : 9,
+      "cursor_strategy" : "COPY",
+      "target_field" : "request_verb",
+      "source_field" : "message",
+      "condition_type" : "REGEX",
+      "condition_value" : "^haproxy:"
+    }, {
+      "title" : "Request Path",
+      "type" : "REGEX",
+      "configuration" : {
+        "regex_value" : "haproxy:.+?\"\\w+\\s(\\S+)"
+      },
+      "converters" : [ ],
+      "order" : 10,
+      "cursor_strategy" : "COPY",
+      "target_field" : "request_path",
+      "source_field" : "message",
+      "condition_type" : "REGEX",
+      "condition_value" : "^haproxy:"
+    }, {
+      "title" : "HTTP Version",
+      "type" : "REGEX",
+      "configuration" : {
+        "regex_value" : "haproxy:.+HTTP/(\\S+)\""
+      },
+      "converters" : [ ],
+      "order" : 2,
+      "cursor_strategy" : "COPY",
+      "target_field" : "http_version",
+      "source_field" : "message",
+      "condition_type" : "REGEX",
+      "condition_value" : "^haproxy:"
+    }, {
+      "title" : "Message",
+      "type" : "REGEX",
+      "configuration" : {
+        "regex_value" : "haproxy:.+\"(.+)\""
+      },
+      "converters" : [ ],
+      "order" : 11,
+      "cursor_strategy" : "COPY",
+      "target_field" : "message",
+      "source_field" : "message",
+      "condition_type" : "REGEX",
+      "condition_value" : "^haproxy:"
+    }, {
+      "title" : "Timings",
+      "type" : "REGEX",
+      "configuration" : {
+        "regex_value" : "haproxy:.+?\\[.+?\\].+?\\S+/\\S+\\s(\\S+)"
+      },
+      "converters" : [ ],
+      "order" : 0,
+      "cursor_strategy" : "COPY",
+      "target_field" : "timings",
+      "source_field" : "message",
+      "condition_type" : "REGEX",
+      "condition_value" : "haproxy:"
+    }, {
+      "title" : "Milliseconds spent waiting for the client to send a full HTTP request",
+      "type" : "SPLIT_AND_INDEX",
+      "configuration" : {
+        "index" : 1,
+        "split_by" : "/"
+      },
+      "converters" : [ {
+        "type" : "NUMERIC",
+        "configuration" : { }
+      } ],
+      "order" : 0,
+      "cursor_strategy" : "COPY",
+      "target_field" : "tq",
+      "source_field" : "timings",
+      "condition_type" : "NONE",
+      "condition_value" : "haproxy:"
+    }, {
+      "title" : "Milliseconds spent waiting in queues",
+      "type" : "SPLIT_AND_INDEX",
+      "configuration" : {
+        "index" : 2,
+        "split_by" : "/"
+      },
+      "converters" : [ {
+        "type" : "NUMERIC",
+        "configuration" : { }
+      } ],
+      "order" : 0,
+      "cursor_strategy" : "COPY",
+      "target_field" : "tw",
+      "source_field" : "timings",
+      "condition_type" : "NONE",
+      "condition_value" : ""
+    }, {
+      "title" : "Milliseconds spent waiting for the connection to establish to the final server",
+      "type" : "SPLIT_AND_INDEX",
+      "configuration" : {
+        "index" : 3,
+        "split_by" : "/"
+      },
+      "converters" : [ {
+        "type" : "NUMERIC",
+        "configuration" : { }
+      } ],
+      "order" : 0,
+      "cursor_strategy" : "COPY",
+      "target_field" : "tc",
+      "source_field" : "timings",
+      "condition_type" : "NONE",
+      "condition_value" : ""
+    }, {
+      "title" : "Milliseconds spent waiting for the server to send a full HTTP response",
+      "type" : "SPLIT_AND_INDEX",
+      "configuration" : {
+        "index" : 4,
+        "split_by" : "/"
+      },
+      "converters" : [ {
+        "type" : "NUMERIC",
+        "configuration" : { }
+      } ],
+      "order" : 0,
+      "cursor_strategy" : "COPY",
+      "target_field" : "tr",
+      "source_field" : "timings",
+      "condition_type" : "NONE",
+      "condition_value" : ""
+    }, {
+      "title" : "Milliseconds elapsed between the accept and the last close",
+      "type" : "SPLIT_AND_INDEX",
+      "configuration" : {
+        "index" : 5,
+        "split_by" : "/"
+      },
+      "converters" : [ {
+        "type" : "NUMERIC",
+        "configuration" : { }
+      } ],
+      "order" : 0,
+      "cursor_strategy" : "COPY",
+      "target_field" : "tt",
+      "source_field" : "timings",
+      "condition_type" : "NONE",
+      "condition_value" : ""
+    } ],
+    "static_fields" : { }
+  } ],
+  "streams" : [ ],
+  "outputs" : [ ],
+  "dashboards" : [ ],
+  "grok_patterns" : [ ]
+}
