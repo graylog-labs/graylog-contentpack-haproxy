@@ -17,7 +17,7 @@
       "title" : "Remote Address",
       "type" : "REGEX",
       "configuration" : {
-        "regex_value" : "haproxy:\\s+(\\S+):"
+        "regex_value" : "haproxy(?:\\[\\d+\\])?:\\s+(\\S+):"
       },
       "converters" : [ ],
       "order" : 1,
@@ -25,12 +25,12 @@
       "target_field" : "remote_addr",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Request Timestamp",
       "type" : "REGEX",
       "configuration" : {
-        "regex_value" : "haproxy:.+?\\[(.+?)\\]"
+        "regex_value" : "haproxy(?:\\[\\d+\\])?:.+?\\[(.+?)\\]"
       },
       "converters" : [ {
         "type" : "DATE",
@@ -43,12 +43,12 @@
       "target_field" : "timestamp",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Frontend",
       "type" : "REGEX",
       "configuration" : {
-        "regex_value" : "haproxy:.+?\\[.+?\\]\\s(\\S+)"
+        "regex_value" : "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\]\\s(\\S+)"
       },
       "converters" : [ ],
       "order" : 4,
@@ -56,12 +56,12 @@
       "target_field" : "frontend",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Server",
       "type" : "REGEX",
       "configuration" : {
-        "regex_value" : "haproxy:.+?\\[.+?\\].+?/(\\S+)"
+        "regex_value" : "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?/(\\S+)"
       },
       "converters" : [ ],
       "order" : 6,
@@ -69,12 +69,12 @@
       "target_field" : "server",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Backend",
       "type" : "REGEX",
       "configuration" : {
-        "regex_value" : "haproxy:.+?\\[.+?\\].+?(\\S+)/"
+        "regex_value" : "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?(\\S+)/"
       },
       "converters" : [ ],
       "order" : 5,
@@ -82,12 +82,12 @@
       "target_field" : "backend",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Response Status",
       "type" : "REGEX",
       "configuration" : {
-        "regex_value" : "haproxy:.+?\\[.+?\\].+?\\s\\S+\\s\\S+\\s(\\d+)"
+        "regex_value" : "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?\\s\\S+\\s\\S+\\s(\\d+)"
       },
       "converters" : [ {
         "type" : "NUMERIC",
@@ -98,12 +98,12 @@
       "target_field" : "response_status",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Response Bytes",
       "type" : "REGEX",
       "configuration" : {
-        "regex_value" : "haproxy:.+?\\[.+?\\].+?\\s\\S+\\s\\S+\\s\\d+\\s(\\d+)"
+        "regex_value" : "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?\\s\\S+\\s\\S+\\s\\d+\\s(\\d+)"
       },
       "converters" : [ {
         "type" : "NUMERIC",
@@ -114,12 +114,12 @@
       "target_field" : "response_bytes",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Request Verb",
       "type" : "REGEX",
       "configuration" : {
-        "regex_value" : "haproxy:.+?\"(\\w+)\\s"
+        "regex_value" : "haproxy(?:\\[\\d+\\])?:.+?\"(\\w+)\\s"
       },
       "converters" : [ ],
       "order" : 9,
@@ -127,12 +127,12 @@
       "target_field" : "request_verb",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Request Path",
       "type" : "REGEX",
       "configuration" : {
-        "regex_value" : "haproxy:.+?\"\\w+\\s(\\S+)"
+        "regex_value" : "haproxy(?:\\[\\d+\\])?:.+?\"\\w+\\s(\\S+)"
       },
       "converters" : [ ],
       "order" : 10,
@@ -140,12 +140,12 @@
       "target_field" : "request_path",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "HTTP Version",
       "type" : "REGEX",
       "configuration" : {
-        "regex_value" : "haproxy:.+HTTP/(\\S+)\""
+        "regex_value" : "haproxy(?:\\[\\d+\\])?:.+HTTP/(\\S+)\""
       },
       "converters" : [ ],
       "order" : 2,
@@ -153,12 +153,12 @@
       "target_field" : "http_version",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Message",
       "type" : "REGEX",
       "configuration" : {
-        "regex_value" : "haproxy:.+\"(.+)\""
+        "regex_value" : "haproxy(?:\\[\\d+\\])?:.+\"(.+)\""
       },
       "converters" : [ ],
       "order" : 11,
@@ -166,12 +166,12 @@
       "target_field" : "message",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Timings",
       "type" : "REGEX",
       "configuration" : {
-        "regex_value" : "haproxy:.+?\\[.+?\\].+?\\S+/\\S+\\s(\\S+)"
+        "regex_value" : "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?\\S+/\\S+\\s(\\S+)"
       },
       "converters" : [ ],
       "order" : 0,
@@ -179,7 +179,7 @@
       "target_field" : "timings",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "haproxy:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Milliseconds spent waiting for the client to send a full HTTP request",
       "type" : "SPLIT_AND_INDEX",
@@ -196,7 +196,7 @@
       "target_field" : "tq",
       "source_field" : "timings",
       "condition_type" : "NONE",
-      "condition_value" : "haproxy:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Milliseconds spent waiting in queues",
       "type" : "SPLIT_AND_INDEX",
