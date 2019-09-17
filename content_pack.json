@@ -25,7 +25,7 @@
       "target_field" : "remote_addr",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy(?:\\[\\d+\\])?:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Request Timestamp",
       "type" : "REGEX",
@@ -43,7 +43,7 @@
       "target_field" : "timestamp",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy(?:\\[\\d+\\])?:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Frontend",
       "type" : "REGEX",
@@ -56,7 +56,7 @@
       "target_field" : "frontend",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy(?:\\[\\d+\\])?:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Server",
       "type" : "REGEX",
@@ -69,7 +69,7 @@
       "target_field" : "server",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy(?:\\[\\d+\\])?:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Backend",
       "type" : "REGEX",
@@ -82,7 +82,7 @@
       "target_field" : "backend",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy(?:\\[\\d+\\])?:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Response Status",
       "type" : "REGEX",
@@ -98,7 +98,7 @@
       "target_field" : "response_status",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy(?:\\[\\d+\\])?:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Response Bytes",
       "type" : "REGEX",
@@ -114,7 +114,7 @@
       "target_field" : "response_bytes",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy(?:\\[\\d+\\])?:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Request Verb",
       "type" : "REGEX",
@@ -127,7 +127,7 @@
       "target_field" : "request_verb",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy(?:\\[\\d+\\])?:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Request Path",
       "type" : "REGEX",
@@ -140,7 +140,7 @@
       "target_field" : "request_path",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy(?:\\[\\d+\\])?:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "HTTP Version",
       "type" : "REGEX",
@@ -153,7 +153,7 @@
       "target_field" : "http_version",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy(?:\\[\\d+\\])?:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Message",
       "type" : "REGEX",
@@ -166,7 +166,7 @@
       "target_field" : "message",
       "source_field" : "message",
       "condition_type" : "REGEX",
-      "condition_value" : "^haproxy(?:\\[\\d+\\])?:"
+      "condition_value" : "haproxy(?:\\[\\d+\\])?:"
     }, {
       "title" : "Timings",
       "type" : "REGEX",
